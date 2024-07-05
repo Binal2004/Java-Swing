@@ -1,0 +1,279 @@
+
+1. ActionEvent (Button Click):
+
+   
+   import javax.swing.*;
+   import java.awt.event.*;
+
+   public class ButtonClickEventExample {
+       public static void main(String[] args) {
+           JFrame frame = new JFrame("Button Click Event Example");
+           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+           JButton button = new JButton("Click Me");
+           button.addActionListener(new ActionListener() {
+               public void actionPerformed(ActionEvent e) {
+                   JOptionPane.showMessageDialog(frame, "Button clicked!");
+               }
+           });
+
+           frame.getContentPane().add(button);
+           frame.setSize(300, 200);
+           frame.setVisible(true);
+       }
+   }
+   
+
+2. MouseEvent (Mouse Click):
+
+   
+   import javax.swing.*;
+   import java.awt.event.*;
+
+   public class MouseClickEventExample {
+       public static void main(String[] args) {
+           JFrame frame = new JFrame("Mouse Click Event Example");
+           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+           frame.addMouseListener(new MouseAdapter() {
+               public void mouseClicked(MouseEvent e) {
+                   JOptionPane.showMessageDialog(frame, "Mouse clicked at: (" + e.getX() + ", " + e.getY() + ")");
+               }
+           });
+
+           frame.setSize(300, 200);
+           frame.setVisible(true);
+       }
+   }
+   
+
+3. KeyEvent (Key Press):
+
+   
+   import javax.swing.*;
+   import java.awt.event.*;
+
+   public class KeyPressEventExample {
+       public static void main(String[] args) {
+           JFrame frame = new JFrame("Key Press Event Example");
+           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+           frame.addKeyListener(new KeyAdapter() {
+               public void keyPressed(KeyEvent e) {
+                   JOptionPane.showMessageDialog(frame, "Key pressed: " + e.getKeyChar());
+               }
+           });
+
+           frame.setSize(300, 200);
+           frame.setVisible(true);
+           frame.setFocusable(true);
+       }
+   }
+   
+
+4. WindowEvent (Window Close):
+
+   
+   import javax.swing.*;
+   import java.awt.event.*;
+
+   public class WindowCloseEventExample {
+       public static void main(String[] args) {
+           JFrame frame = new JFrame("Window Close Event Example");
+           frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+           frame.addWindowListener(new WindowAdapter() {
+               public void windowClosing(WindowEvent e) {
+                   int choice = JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit?");
+                   if (choice == JOptionPane.YES_OPTION) {
+                       frame.dispose();
+                   }
+               }
+           });
+
+           frame.setSize(300, 200);
+           frame.setVisible(true);
+       }
+   }
+   
+
+5. ItemEvent (Checkbox/Radio Button Selection):
+
+   
+   import javax.swing.*;
+   import java.awt.event.*;
+
+   public class ItemEventExample {
+       public static void main(String[] args) {
+           JFrame frame = new JFrame("Item Event Example");
+           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+           JCheckBox checkBox = new JCheckBox("Check Me");
+           checkBox.addItemListener(new ItemListener() {
+               public void itemStateChanged(ItemEvent e) {
+                   if (e.getStateChange() == ItemEvent.SELECTED) {
+                       JOptionPane.showMessageDialog(frame, "Checkbox selected");
+                   } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+                       JOptionPane.showMessageDialog(frame, "Checkbox deselected");
+                   }
+               }
+           });
+
+           frame.getContentPane().add(checkBox);
+           frame.setSize(300, 200);
+           frame.setVisible(true);
+       }
+   }
+   
+
+6. FocusEvent (Focus Gained/Lost):
+
+   
+   import javax.swing.*;
+   import java.awt.event.*;
+
+   public class FocusEventExample {
+       public static void main(String[] args) {
+           JFrame frame = new JFrame("Focus Event Example");
+           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+           JTextField textField = new JTextField(10);
+           textField.addFocusListener(new FocusAdapter() {
+               public void focusGained(FocusEvent e) {
+                   JOptionPane.showMessageDialog(frame, "Focus gained");
+               }
+
+               public void focusLost(FocusEvent e) {
+                   JOptionPane.showMessageDialog(frame, "Focus lost");
+               }
+           });
+
+           frame.getContentPane().add(textField);
+           frame.setSize(300, 200);
+           frame.setVisible(true);
+       }
+   }
+   
+
+7. WindowStateEvent (Window Minimized/Maximized):
+
+   
+   import javax.swing.*;
+   import java.awt.event.*;
+
+   public class WindowStateEventExample {
+       public static void main(String[] args) {
+           JFrame frame = new JFrame("Window State Event Example");
+           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+           frame.addWindowStateListener(new WindowStateListener() {
+               public void windowStateChanged(WindowEvent e) {
+                   if (e.getNewState() == Frame.ICONIFIED) {
+                       JOptionPane.showMessageDialog(frame, "Window minimized");
+                   } else if (e.getNewState() == Frame.MAXIMIZED_BOTH) {
+                       JOptionPane.showMessageDialog(frame, "Window maximized");
+                   }
+               }
+           });
+
+           frame.setSize(300, 200);
+           frame.setVisible(true);
+       }
+   }
+   
+
+8. ComponentEvent (Component Resized/Moved):
+
+   
+   import javax.swing.*;
+   import java.awt.event.*;
+
+   public class ComponentEventExample {
+       public static void main(String[] args) {
+           JFrame frame = new JFrame("Component Event Example");
+           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+           frame.addComponentListener(new ComponentAdapter() {
+               public void componentResized(ComponentEvent e) {
+                   JOptionPane.showMessageDialog(frame, "Window resized");
+               }
+
+               public void componentMoved(ComponentEvent e) {
+                   JOptionPane.showMessageDialog(frame, "Window moved");
+               }
+           });
+
+           frame.setSize(300, 200);
+           frame.setVisible(true);
+       }
+   }
+   
+
+9. PopupMenuEvent (Popup Menu Opened/Closed):
+
+   
+   import javax.swing.*;
+   import javax.swing.event.*;
+
+   public class PopupMenuEventExample {
+       public static void main(String[] args) {
+           JFrame frame = new JFrame("Popup Menu Event Example");
+           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+           JPopupMenu popupMenu = new JPopupMenu();
+           popupMenu.add(new JMenuItem("Item 1"));
+           popupMenu.add(new JMenuItem("Item 2"));
+
+           popupMenu.addPopupMenuListener(new PopupMenuListener() {
+               public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+                   JOptionPane.showMessageDialog(frame, "Popup menu opened");
+               }
+
+               public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+                   JOptionPane.showMessageDialog(frame, "Popup menu closed");
+               }
+
+               public void popupMenuCanceled(PopupMenuEvent e) {}
+           });
+
+           frame.setComponentPopupMenu(popupMenu);
+           frame.setSize(300, 200);
+           frame.setVisible(true);
+       }
+   }
+   
+
+10. ListSelectionEvent (List Selection):
+
+    
+    import javax.swing.*;
+    import javax.swing.event.*;
+
+    public class ListSelectionEventExample {
+        public static void main(String[] args) {
+            JFrame frame = new JFrame("List Selection Event Example");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+            DefaultListModel<String> model = new DefaultListModel<>();
+            model.addElement("Item 1");
+            model.addElement("Item 2");
+            model.addElement("Item 3");
+
+            JList<String> list = new JList<>(model);
+            list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+            list.addListSelectionListener(new
+
+ ListSelectionListener() {
+                public void valueChanged(ListSelectionEvent e) {
+                    if (!e.getValueIsAdjusting()) {
+                        JOptionPane.showMessageDialog(frame, "Selected item: " + list.getSelectedValue());
+                    }
+                }
+            });
+
+            frame.getContentPane().add(new JScrollPane(list));
+            frame.setSize(300, 200);
+            frame.setVisible(true);
+        }
+    }
